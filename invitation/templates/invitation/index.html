@@ -306,7 +306,7 @@
                         <h2 class="font-pattaya text-3xl md:text-4xl text-[#a4161a] mb-2">Tiệc cưới sẽ diễn ra vào
                             lúc:
                         </h2>
-                        <div class="text-3xl md:text-5xl font-bold text-[#a4161a] mb-6">08:00</div>
+                        <div class="text-3xl md:text-5xl font-bold text-[#a4161a] mb-6">11:00</div>
 
                         <div class="flex items-center justify-center gap-4 text-gray-600 mb-2">
                             <span class="uppercase tracking-widest text-sm">THỨ NĂM</span>
@@ -344,7 +344,8 @@
                         <h3 class="font-pattaya text-xl md:text-2xl text-[#a4161a]">Sự hiện diện của quý khách là
                             niềm
                             vinh hạnh của gia đình chúng tôi!</h3>
-                        <p class="font-pattaya text-lg md:text-xl text-[#a4161a] mt-2">Đại Diện Bố Nguyên</p>
+                        <p class="font-pattaya text-lg md:text-xl text-[#a4161a] mt-2">Chủ Hôn Học - Yến</p>
+                        <p class="font-pattaya text-lg md:text-xl text-[#a4161a] mt-2">Bố Nguyên Thân Mời!</p>
                     </div>
                 </div>
 
@@ -363,41 +364,16 @@
     </div>
 
     <!-- Open Invitation Script -->
-    <!-- Hidden YouTube Player -->
-    <div id="youtube-audio" class="hidden"></div>
+    <!-- Background Music Audio Element -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="{% static 'invitation/music/bg_music.mp3' %}" type="audio/mpeg">
+    </audio>
 
     <!-- Main Logic Script -->
     <script>
-        // Load YouTube IFrame API
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player;
-        var isPlaying = false;
+        const audio = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-toggle-btn');
-
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('youtube-audio', {
-                height: '0',
-                width: '0',
-                videoId: '06-XXOTP3Gc',
-                playerVars: {
-                    'autoplay': 0,
-                    'controls': 0,
-                    'loop': 1,
-                    'playlist': '06-XXOTP3Gc' // Playlist required for loop to work
-                },
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            // Player ready, waiting for user interaction
-        }
+        let isPlaying = false;
 
         // Handle "Open Invitation" Click
         document.getElementById('open-invitation-btn').addEventListener('click', function () {
@@ -405,12 +381,12 @@
             const body = document.getElementById('main-body');
 
             // Try to play music
-            if (player && typeof player.playVideo === 'function') {
-                player.unMute();
-                player.playVideo();
+            audio.play().then(() => {
                 isPlaying = true;
-                musicBtn.classList.add('animate-spin-cd'); // Ensure spin is active
-            }
+                musicBtn.classList.add('animate-spin-cd');
+            }).catch(error => {
+                console.log("Audio play failed (browser policy):", error);
+            });
 
             // Fade out overlay
             overlay.style.opacity = '0';
@@ -427,16 +403,14 @@
 
         // Handle Music Toggle Button Click
         musicBtn.addEventListener('click', function () {
-            if (player && typeof player.getPlayerState === 'function') {
-                if (isPlaying) {
-                    player.pauseVideo();
-                    musicBtn.classList.remove('animate-spin-cd');
-                    isPlaying = false;
-                } else {
-                    player.playVideo();
-                    musicBtn.classList.add('animate-spin-cd');
-                    isPlaying = true;
-                }
+            if (audio.paused) {
+                audio.play();
+                musicBtn.classList.add('animate-spin-cd');
+                isPlaying = true;
+            } else {
+                audio.pause();
+                musicBtn.classList.remove('animate-spin-cd');
+                isPlaying = false;
             }
         });
     </script>
