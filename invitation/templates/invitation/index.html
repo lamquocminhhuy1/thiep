@@ -354,7 +354,7 @@
 
     <!-- Background Music Button (Fixed) -->
     <div class="fixed bottom-4 right-4 z-50">
-        <button
+        <button id="music-toggle-btn"
             class="w-12 h-12 rounded-full bg-[#fb3570] text-white shadow-lg flex items-center justify-center animate-spin-cd hover:scale-110 transition">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="h-6 w-6">
                 <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"></path>
@@ -363,22 +363,81 @@
     </div>
 
     <!-- Open Invitation Script -->
+    <!-- Hidden YouTube Player -->
+    <div id="youtube-audio" class="hidden"></div>
+
+    <!-- Main Logic Script -->
     <script>
+        // Load YouTube IFrame API
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        var isPlaying = false;
+        const musicBtn = document.getElementById('music-toggle-btn');
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-audio', {
+                height: '0',
+                width: '0',
+                videoId: '06-XXOTP3Gc',
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'loop': 1,
+                    'playlist': '06-XXOTP3Gc' // Playlist required for loop to work
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Player ready, waiting for user interaction
+        }
+
+        // Handle "Open Invitation" Click
         document.getElementById('open-invitation-btn').addEventListener('click', function () {
             const overlay = document.getElementById('welcome-overlay');
             const body = document.getElementById('main-body');
 
-            // Fade out
+            // Try to play music
+            if (player && typeof player.playVideo === 'function') {
+                player.unMute();
+                player.playVideo();
+                isPlaying = true;
+                musicBtn.classList.add('animate-spin-cd'); // Ensure spin is active
+            }
+
+            // Fade out overlay
             overlay.style.opacity = '0';
             overlay.style.pointerEvents = 'none';
 
             // Allow scrolling
             body.classList.remove('overflow-hidden');
 
-            // Remove from DOM after transition
+            // Remove overlay from DOM
             setTimeout(() => {
                 overlay.remove();
             }, 1000);
+        });
+
+        // Handle Music Toggle Button Click
+        musicBtn.addEventListener('click', function () {
+            if (player && typeof player.getPlayerState === 'function') {
+                if (isPlaying) {
+                    player.pauseVideo();
+                    musicBtn.classList.remove('animate-spin-cd');
+                    isPlaying = false;
+                } else {
+                    player.playVideo();
+                    musicBtn.classList.add('animate-spin-cd');
+                    isPlaying = true;
+                }
+            }
         });
     </script>
 </body>
