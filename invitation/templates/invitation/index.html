@@ -1,0 +1,386 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi" data-theme="cupcake">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ groom_name }} & {{ bride_name }} Wedding</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        pattaya: ['Pattaya', 'sans-serif'],
+                        helvetica: ['Helvetica', 'Arial', 'sans-serif'],
+                    },
+                    colors: {
+                        'z-red': '#fb3570',
+                        'z-linen': '#fdfbf7',
+                        'z-gray': '#4b5563',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Custom Animations from Template */
+        @keyframes spin-cd {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate-spin-cd {
+            animation: spin-cd 3s linear infinite;
+        }
+
+        @keyframes dance {
+
+            0%,
+            100% {
+                height: 20%
+            }
+
+            50% {
+                height: 100%
+            }
+        }
+
+        .animate-dance-1 {
+            animation: dance .4s ease-in-out infinite;
+        }
+
+        .animate-dance-2 {
+            animation: dance .4s ease-in-out infinite .1s;
+        }
+
+        .animate-dance-3 {
+            animation: dance .4s ease-in-out infinite .2s;
+        }
+
+        .animate-dance-4 {
+            animation: dance .4s ease-in-out infinite .3s;
+        }
+
+        @keyframes bounce-gentle {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .animate-bounce-gentle {
+            animation: bounce-gentle 2s ease-in-out infinite;
+        }
+
+        /* Custom Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .font-pattaya {
+            font-family: 'Pattaya', cursive;
+        }
+
+        .font-helvetica {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Fallback to Montserrat as Helvetica isn't free/google-font */
+
+        /* DaisyuIEsq features manually implemented or simplified */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased text-gray-700 bg-gray-50 overflow-hidden" id="main-body">
+
+    <!-- Welcome Overlay -->
+    <div id="welcome-overlay"
+        class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#fdfbf7] transition-opacity duration-1000">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 z-0 opacity-10"
+            style="background-image: url('{% static 'invitation/images/bg_red.png' %}'); background-size: cover;"></div>
+
+        <!-- Content -->
+        <div class="z-10 text-center px-4">
+            <div
+                class="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 md:mb-8 rounded-full bg-[#f2e9e4] flex items-center justify-center shadow-inner border-2 border-[#a4161a]/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 md:h-16 md:w-16 text-[#fb3570] animate-pulse"
+                    fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+            </div>
+            <p class="font-pattaya text-xl md:text-2xl text-[#a4161a] mb-4">Trân trọng kính mời tới dự lễ thành hôn của
+            </p>
+            <h1 class="font-pattaya text-3xl md:text-5xl text-[#a4161a] mb-12">{{ groom_name }} <span
+                    class="text-2xl align-middle text-[#fb3570]">&</span> {{ bride_name }}</h1>
+
+            <button id="open-invitation-btn"
+                class="group relative px-8 py-3 bg-[#a4161a] text-white rounded-full font-bold shadow-lg hover:bg-[#800f13] transition transform hover:scale-105">
+                <span class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76" />
+                    </svg>
+                    MỞ THIỆP
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div class="min-h-screen">
+        <main class="flex justify-center items-center min-h-screen bg-gray-50">
+            <div class="w-full max-w-4xl bg-[#fdfbf7] shadow-xl overflow-hidden">
+
+                <!-- Unified Top Section -->
+                <div class="relative w-full pb-12">
+                    <!-- Background with Overlay -->
+                    <div class="absolute inset-0 z-0">
+                        <div class="absolute inset-0"
+                            style="background-image: url('{% static 'invitation/images/bg_red.png' %}'); background-size: cover; background-position: center;">
+                        </div>
+                        <div class="absolute inset-0 bg-[#f2e9e4]/90"></div>
+                    </div>
+                    <!-- Content Wrapper -->
+                    <div class="relative z-10">
+                        <!-- Top Red Banner -->
+                        <div class="h-24 w-full relative" style="background-color: #a4161a; overflow: hidden;">
+                            <!-- Background pattern -->
+                            <div class="absolute inset-0 opacity-50"
+                                style="background-image: url('{% static 'invitation/images/bg_red.png' %}'); background-size: cover; background-blend-mode: overlay;">
+                            </div>
+                        </div>
+
+                        <!-- Happy Wedding Title & Couple Area -->
+                        <div class="relative text-center pt-8">
+                            <h1 class="font-pattaya text-4xl md:text-6xl text-[#a4161a] mb-12 drop-shadow-sm">Happy
+                                Wedding
+                            </h1>
+
+                            <div class="relative max-w-6xl mx-auto px-2">
+                                <!-- Dark Red Stripe Behind Photos -->
+                                <div
+                                    class="absolute w-full h-24 md:h-32 bg-[#a4161a] left-0 top-24 md:top-32 z-0 shadow-sm">
+                                    <div class="absolute inset-0 opacity-30"
+                                        style="background-image: url('{% static 'invitation/images/bg_red.png' %}'); background-size: cover;">
+                                    </div>
+                                </div>
+
+                                <!-- Couple Grid -->
+                                <div class="grid grid-cols-2 gap-4 md:gap-12 relative z-10 pt-4">
+
+                                    <!-- Groom Side -->
+                                    <div class="flex flex-col items-center">
+                                        <!-- Photo -->
+                                        <div
+                                            class="w-40 h-40 md:w-72 md:h-72 rounded-full border-4 border-[#f2e9e4] shadow-2xl overflow-hidden mb-8 transform hover:scale-105 transition duration-500 bg-white">
+                                            <img src="{% if wedding_info.groom_photo %}{{ wedding_info.groom_photo.url }}{% else %}{% static 'invitation/images/groom.png' %}{% endif %}"
+                                                alt="Chú Rể" class="w-full h-full object-cover">
+                                        </div>
+
+                                        <!-- Info -->
+                                        <div class="text-center w-full">
+                                            <p
+                                                class="text-gray-600 font-light uppercase tracking-widest text-sm md:text-base mb-1">
+                                                Trưởng Nam</p>
+                                            <h2 class="font-pattaya text-3xl md:text-5xl text-[#a4161a] mb-6 md:mb-8">
+                                                Nguyễn
+                                                Phước Hải</h2>
+
+                                            <!-- Parents -->
+                                            <div class="mb-4">
+                                                <p
+                                                    class="text-xs md:text-sm uppercase text-gray-500 mb-2 font-semibold">
+                                                    Ông
+                                                    Bà</p>
+                                                <div
+                                                    class="font-pattaya text-xl md:text-2xl text-gray-800 leading-snug">
+                                                    <p>{{ groom_parents_dad }}</p>
+                                                    <p>{{ groom_parents_mom }}</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Address -->
+                                            <p
+                                                class="text-xs md:text-sm text-gray-600 px-2 md:px-12 leading-relaxed opacity-80 max-w-sm mx-auto">
+                                                {{ groom_address }}</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Bride Side -->
+                                    <div class="flex flex-col items-center">
+                                        <!-- Photo -->
+                                        <div
+                                            class="w-40 h-40 md:w-72 md:h-72 rounded-full border-4 border-[#f2e9e4] shadow-2xl overflow-hidden mb-8 transform hover:scale-105 transition duration-500 bg-white">
+                                            <img src="{% if wedding_info.bride_photo %}{{ wedding_info.bride_photo.url }}{% else %}{% static 'invitation/images/bride.png' %}{% endif %}"
+                                                alt="Cô Dâu" class="w-full h-full object-cover">
+                                        </div>
+
+                                        <!-- Info -->
+                                        <div class="text-center w-full">
+                                            <p
+                                                class="text-gray-600 font-light uppercase tracking-widest text-sm md:text-base mb-1">
+                                                Thứ Nữ</p>
+                                            <h2 class="font-pattaya text-3xl md:text-5xl text-[#a4161a] mb-6 md:mb-8">
+                                                Dương
+                                                Hà Giang</h2>
+
+                                            <!-- Parents -->
+                                            <div class="mb-4">
+                                                <p
+                                                    class="text-xs md:text-sm uppercase text-gray-500 mb-2 font-semibold">
+                                                    Ông
+                                                    Bà</p>
+                                                <div
+                                                    class="font-pattaya text-xl md:text-2xl text-gray-800 leading-snug">
+                                                    <p>{{ bride_parents_dad }}</p>
+                                                    <p>{{ bride_parents_mom }}</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Address -->
+                                            <p
+                                                class="text-xs md:text-sm text-gray-600 px-2 md:px-12 leading-relaxed opacity-80 max-w-sm mx-auto">
+                                                {{ bride_address }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Placeholder (Moved) -->
+                <div class="py-12 px-4 bg-[#fdfbf7]">
+                    <h2 class="text-3xl font-pattaya text-center text-[#fb3570] mb-8">Album Ảnh Cưới</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-2">
+                        {% if album_photos %}
+                        {% for photo in album_photos %}
+                        <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden group relative">
+                            <img src="{{ photo.photo.url }}"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="col-span-full text-center py-8 text-gray-500 italic">
+                            Hình ảnh thiệp cưới đang được cập nhật...
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Events Section -->
+                <div class="py-16 px-4 bg-[#f2e9e4]">
+
+                    <!-- Ceremony -->
+                    <div class="text-center mb-16">
+                        <h2 class="font-pattaya text-3xl md:text-4xl text-[#a4161a] mb-2">Tiệc cưới sẽ diễn ra vào
+                            lúc:
+                        </h2>
+                        <div class="text-3xl md:text-5xl font-bold text-[#a4161a] mb-6">08:00</div>
+
+                        <div class="flex items-center justify-center gap-4 text-gray-600 mb-2">
+                            <span class="uppercase tracking-widest text-sm">THỨ NĂM</span>
+                            <span class="text-4xl md:text-5xl font-bold text-[#a4161a] mx-2">29</span>
+                            <span class="uppercase tracking-widest text-sm">THÁNG 01</span>
+                        </div>
+                        <div class="text-xl font-bold text-[#a4161a] mb-2">2026</div>
+                        <div class="text-gray-600 italic mb-8">{{ wedding_info.ceremony_lunar_date }}</div>
+
+                    </div>
+
+                    <!-- Location -->
+                    <div class="text-center">
+                        <h2 class="font-pattaya text-3xl md:text-4xl text-[#a4161a] mb-6">Tiệc cưới sẽ tổ chức tại:
+                        </h2>
+                        <div class="bg-[#ebe0d5] p-6 rounded-lg inline-block shadow-sm max-w-2xl mx-auto">
+                            <p class="text-gray-700 font-semibold text-lg md:text-xl">
+                                <a href="https://maps.app.goo.gl/3rWFkQvRFijmWEDYA" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="hover:text-[#a4161a] transition-colors underline-offset-4 hover:underline">
+                                    131 Rạch Ông Kinh, Phường Long Tuyền, Thành Phố Cần Thơ
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Bottom Decoration -->
+                <div class="relative w-full h-32 md:h-48 bg-[#a4161a] flex items-center justify-center">
+                    <div class="absolute inset-0 opacity-20"
+                        style="background-image: url('{% static 'invitation/images/bg_red.png' %}'); background-size: cover;">
+                    </div>
+                    <div class="bg-[#e6dcd3] px-8 py-4 rounded-lg shadow-lg relative z-10 max-w-lg text-center mx-4">
+                        <h3 class="font-pattaya text-xl md:text-2xl text-[#a4161a]">Sự hiện diện của quý khách là
+                            niềm
+                            vinh hạnh của gia đình chúng tôi!</h3>
+                        <p class="font-pattaya text-lg md:text-xl text-[#a4161a] mt-2">Đại Diện Bố Nguyên</p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Background Music Button (Fixed) -->
+    <div class="fixed bottom-4 right-4 z-50">
+        <button
+            class="w-12 h-12 rounded-full bg-[#fb3570] text-white shadow-lg flex items-center justify-center animate-spin-cd hover:scale-110 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="h-6 w-6">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Open Invitation Script -->
+    <script>
+        document.getElementById('open-invitation-btn').addEventListener('click', function () {
+            const overlay = document.getElementById('welcome-overlay');
+            const body = document.getElementById('main-body');
+
+            // Fade out
+            overlay.style.opacity = '0';
+            overlay.style.pointerEvents = 'none';
+
+            // Allow scrolling
+            body.classList.remove('overflow-hidden');
+
+            // Remove from DOM after transition
+            setTimeout(() => {
+                overlay.remove();
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
