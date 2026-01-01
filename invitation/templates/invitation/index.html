@@ -196,7 +196,21 @@
                                 </div>
 
                                 <!-- Couple Grid -->
-                                <div class="grid grid-cols-2 gap-4 md:gap-12 relative z-10 pt-4">
+                                <div class="grid grid-cols-2 gap-2 md:gap-8 relative z-10 pt-4">
+
+                                    <!-- Absolute Heart Center -->
+                                    <div
+                                        class="absolute left-1/2 top-24 md:top-40 transform -translate-x-1/2 -translate-y-1/2 z-20">
+                                        <div
+                                            class="w-10 h-10 md:w-16 md:h-16 bg-[#fdfbf7] rounded-full flex items-center justify-center shadow-lg animate-pulse">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6 md:h-10 md:w-10 text-[#fb3570]" fill="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                            </svg>
+                                        </div>
+                                    </div>
 
                                     <!-- Groom Side -->
                                     <div class="flex flex-col items-center">
@@ -204,7 +218,7 @@
                                         <div
                                             class="w-40 h-40 md:w-72 md:h-72 rounded-full border-4 border-[#f2e9e4] shadow-2xl overflow-hidden mb-8 transform hover:scale-105 transition duration-500 bg-white">
                                             <img src="{% if wedding_info.groom_photo %}{{ wedding_info.groom_photo.url }}{% else %}{% static 'invitation/images/groom.png' %}{% endif %}"
-                                                alt="Chú Rể" class="w-full h-full object-cover">
+                                                alt="Trưởng Nam" class="w-full h-full object-cover">
                                         </div>
 
                                         <!-- Info -->
@@ -212,9 +226,9 @@
                                             <p
                                                 class="text-gray-600 font-light uppercase tracking-widest text-sm md:text-base mb-1">
                                                 Trưởng Nam</p>
-                                            <h2 class="font-pattaya text-3xl md:text-5xl text-[#a4161a] mb-6 md:mb-8">
-                                                Nguyễn
-                                                Phước Hải</h2>
+                                            <h2
+                                                class="font-pattaya text-2xl md:text-5xl text-[#a4161a] mb-6 md:mb-8 whitespace-nowrap">
+                                                Nguyễn Phước Hải</h2>
 
                                             <!-- Parents -->
                                             <div class="mb-4">
@@ -250,9 +264,9 @@
                                             <p
                                                 class="text-gray-600 font-light uppercase tracking-widest text-sm md:text-base mb-1">
                                                 Thứ Nữ</p>
-                                            <h2 class="font-pattaya text-3xl md:text-5xl text-[#a4161a] mb-6 md:mb-8">
-                                                Dương
-                                                Hà Giang</h2>
+                                            <h2
+                                                class="font-pattaya text-2xl md:text-5xl text-[#a4161a] mb-6 md:mb-8 whitespace-nowrap">
+                                                Dương Hà Giang</h2>
 
                                             <!-- Parents -->
                                             <div class="mb-4">
